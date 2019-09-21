@@ -1,0 +1,67 @@
+h1 {
+    color: red;
+}
+
+#root {
+  background-color: black;
+  width: 200px;
+}
+
+body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+}
+
+.main .header {
+  display: flex;
+  align-items: center;
+  border: 2px solid red;
+}
+
+.main .header .logo {
+  width: 100px;
+  height: 56px;
+}
+
+.main .progressBar {
+  display: flex;
+  flex-direction: row;
+}
+
+.main .progressBar .progressElement {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  font-size: 14px;
+}
+
+.main .progressBar .progressElement .counter {
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: blue;
+  border-radius: 50%;
+  color: white;
+  width: 20px;
+  height: 20px;
+}
+
+.main .progressBar .progressElement .title {
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .content {
+  display: flex;
+  flex-direction: row;
+}
