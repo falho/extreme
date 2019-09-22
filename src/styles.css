@@ -1,10 +1,6 @@
-h1 {
-    color: red;
-}
-
 #root {
-  background-color: black;
-  width: 200px;
+  background-color: lightgrey;
+  padding: 10px;
 }
 
 body {
@@ -16,13 +12,14 @@ body {
 .main {
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
+  min-width: 90%;
 }
 
 .main .header {
   display: flex;
   align-items: center;
-  border: 2px solid red;
+  justify-content: space-between;
+  border: 1px solid grey;
 }
 
 .main .header .logo {
@@ -64,4 +61,69 @@ body {
 .main .content {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.main .content .sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.main .content .sidebar .basketSummary {
+  border: 1px solid grey;
+  padding: 20px 10px;
+}
+
+.main .content .sidebar .basketSummary .title {
+  height: 30px;
+  border-bottom: 1px solid grey;
+  margin-bottom: 10px;
+}
+
+.main .content .sidebar .basketSummary .collectedProducts {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+}
+
+.main .content .sidebar .basketSummary .collectedProducts {
+  display: flex;
+  flex-direction: row;
+}
+
+.main .content .sidebar .basketSummary .collectedProducts .image {
+  display: flex;
+  flex-direction: row;
+  width: 94px;
+  height: 62px;
+  margin-right: 5px;
+}
+
+.productInfo .name {
+  font-weight: bold;
+}
+
+.productInfo .keyValue {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.keyValue .key {
+  margin-right: 6px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.basketSummary .summary {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
 }
