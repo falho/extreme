@@ -17,7 +17,7 @@ const styles = {
   }
 };
 
-const TextInputCmp = ({ label, classes }) => {
+const TextInputCmp = ({ label, value, type, onChange, classes }) => {
   return (
     <Grid item className={classes.main}>
       { label && <Grid className={classes.title}>{label}</Grid> }
@@ -27,6 +27,9 @@ const TextInputCmp = ({ label, classes }) => {
           className: classes.input
         }}
         fullWidth
+        value={value}
+        type={type}
+        onChange={(event) => onChange(event.target.value)}
       />
     </Grid>
   );

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 
-
 import TextInput from './components/TextInput';
 import DropdownSelect from './components/DropdownSelect';
+
+import { reducer, defaultForm } from './state/reducer';
+import { updateForm as updateFormAction } from './state/actions';
+import { getFormValue } from './state/selectors';
 
 const styles = {
   formItem: {
@@ -16,38 +19,62 @@ const styles = {
   }
 };
 
+const formLabels = {
+  name: 'Telepitest igenylo neve',
+  phone: 'Telepitest igenylo telefonszama',
+  email: 'Telepitest igenylo email cime',
+  postCode: 'Iranyitoszam',
+  city: 'Varos',
+  address: 'Telepites helye (utca, hazszam, emelet, ajto)'
+};
+
 const Title = (props) => {
   return <Grid>Title</Grid>
 }
 
 const CertificateForm = ({ classes }) => {
+  const [state, dispatch] = useReducer(reducer, defaultForm);
+
+  const getTextInput = (id, type) => {
+    return (
+    <TextInput
+      label={formLabels[id]}
+      value={getFormValue(state)}
+      fieldId={id}
+      type={type}
+      onChange={(value) => updateFormAction(dispatch, id, value)}
+    />
+  )};
+
   return (
     <Grid>
       <Title />
+
       <Grid className={classes.formItem}>
-        <TextInput label="Telepitest igenylo neve" />
+        {getTextInput('name')}
       </Grid>
 
       <Grid container className={classes.formItem} direction="row">
         <Grid container item>
           <Grid item className={classes.formItemLabel}>
-            Telepitest igenylo telefonszama
+            {formLabels['phone']}
           </Grid>
           <Grid item container alignItems="center">
             <DropdownSelect />
-            <TextInput />
+            {getTextInput('phoneNumber', 'Number')}
           </Grid>
         </Grid>
-        <TextInput label="Telepitest igenylo email cime" />
+        {getTextInput('email')}
       </Grid>
 
       <Grid container direction="row" className={classes.formItem}>
-        <TextInput label="Iranyitoszam" />
-        <TextInput label="Varos" />
+        {getTextInput('postCode')}
+        {getTextInput('city')}
+
       </Grid>
 
       <Grid>
-        <TextInput label="Telepites helye (utca, hazszam, emelet, ajto)" />
+        {getTextInput('address')}
       </Grid>
 
     </Grid>);
