@@ -1,6 +1,6 @@
 export const defaultForm = {
   name: '',
-  phonePrefix: '',
+  phonePrefix: 0,
   phoneNumber: '',
   email: '',
   postCode: '',

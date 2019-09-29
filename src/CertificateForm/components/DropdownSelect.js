@@ -21,7 +21,7 @@ const styles = {
   }
 };
 
-const TextInputCmp = ({ label, classes }) => {
+const TextInputCmp = ({ label, classes, value, onChange, items }) => {
   return (
     <Grid item className={classes.formElement}>
       <TextField
@@ -33,9 +33,12 @@ const TextInputCmp = ({ label, classes }) => {
             select: classes.select
           }
         }}
-        value={1}
+        value={value}
+        onChange={event => onChange(event.target.value)}
       >
-        <MenuItem value={1}>36</MenuItem>
+        {items && items.map(item => (
+          <MenuItem key={item} value={item}>{item}</MenuItem>
+        ))}
       </TextField>
     </Grid>
   );

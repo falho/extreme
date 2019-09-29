@@ -1,12 +1,13 @@
 #root {
-  background-color: lightgrey;
+  border: 1px solid grey;
   padding: 10px;
+  margin: 20px;
 }
 
 body {
-  width: 100%;
   display: flex;
   justify-content: center;
+  min-width: 400px;
 }
 
 .main {
@@ -19,10 +20,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid grey;
 }
 
-.main .header .logo {
+.header .logo {
   width: 100px;
   height: 56px;
 }
@@ -32,14 +32,14 @@ body {
   flex-direction: row;
 }
 
-.main .progressBar .progressElement {
+.progressBar .progressElement {
   display: flex;
   flex-direction: row;
   margin: 20px;
   font-size: 14px;
 }
 
-.main .progressBar .progressElement .counter {
+.progressElement .counter {
   margin-right: 5px;
   display: flex;
   justify-content: center;
@@ -51,11 +51,21 @@ body {
   height: 20px;
 }
 
-.main .progressBar .progressElement .title {
+.progressElement .title {
   margin-right: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 600px) {
+  .progressElement .title {
+    display: none;
+  }
+
+  .progressElement .climate {
+    display: flex;
+  }
 }
 
 .main .content {
@@ -65,36 +75,44 @@ body {
   margin-top: 20px;
 }
 
-.main .content .sidebar {
+@media (max-width: 800px) {
+  .main .content {
+    flex-direction: column-reverse;
+    justify-content: center;
+    margin: 20px;
+  }
+}
+
+.content .sidebar {
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
 }
 
-.main .content .sidebar .basketSummary {
+.sidebar .basketSummary {
   border: 1px solid grey;
   padding: 20px 10px;
+  margin: 20px;
 }
 
-.main .content .sidebar .basketSummary .title {
+.basketSummary .title {
   height: 30px;
   border-bottom: 1px solid grey;
   margin-bottom: 10px;
 }
 
-.main .content .sidebar .basketSummary .collectedProducts {
+.basketSummary .collectedProducts {
   display: flex;
   flex-direction: row;
   padding-bottom: 10px;
   border-bottom: 1px solid grey;
 }
 
-.main .content .sidebar .basketSummary .collectedProducts {
+.basketSummary .collectedProducts {
   display: flex;
   flex-direction: row;
 }
 
-.main .content .sidebar .basketSummary .collectedProducts .image {
+.collectedProducts .image {
   display: flex;
   flex-direction: row;
   width: 94px;
