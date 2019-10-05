@@ -11,14 +11,22 @@ import DropdownSelect from './components/DropdownSelect';
 
 import { reducer, defaultForm } from './state/reducer';
 import { updateForm as updateFormAction } from './state/actions';
-import { getFormValue, isFormValid, getPostData } from './state/selectors';
+import {
+  getFormValue,
+  isFormValid,
+  getPostData,
+  isValueValid
+} from './state/selectors';
+
+import { useIntl } from 'react-intl';
 
 const styles = {
   formItem: {
     margin: '10px 0px 10px 0px'
   },
   formItemLabel: {
-    marginBottom: '5px'
+    marginBottom: '5px',
+    marginTop: '5px'
   }
 };
 
@@ -30,23 +38,32 @@ const onSubmit = postData => {
   axios.post('/checkout/air-conditioner', postData);
 }
 
-const CertificateForm = ({ classes, translations }) => {
+const CertificateForm = ({ classes, countryCodes }) => {
   const [state, dispatch] = useReducer(reducer, defaultForm);
+  const intl = useIntl();
 
-  const getTextInput = (id, type) => {
+  const getInputProps = (id, showLabel = true) => ({
+    label: showLabel && intl.formatMessage({ id }),
+    value: getFormValue(state, id),
+    isValid: isValueValid(state, id),
+    fieldId: id,
+    onChange: (value) => updateFormAction(dispatch, id, value)
+  });
+
+  const getTextInput = id => (
+    <TextInput { ...getInputProps(id) } />
+  );
+
+  const getPhoneNumberInput = id => {
+    const showLabel = false;
+
     return (
-    <TextInput
-      label={translations[id]}
-      value={getFormValue(state, id)}
-      fieldId={id}
-      type={type}
-      onChange={(value) => updateFormAction(dispatch, id, value)}
-    />
+    <TextInput { ...getInputProps(id, showLabel) } type="Number" />
   )};
 
   const title = (
     <Grid className={classes.formItem}>
-      {translations.title}
+      {intl.formatMessage({ id: 'title'})}
     </Grid>
   );
 
@@ -57,20 +74,24 @@ const CertificateForm = ({ classes, translations }) => {
   );
 
   const phoneNumberInput = (
-    <Grid container className={classes.formItem} direction="row">
+    <Grid container xs={12} className={classes.formItem}>
       <Grid item>
         <Grid item className={classes.formItemLabel}>
-          {translations['phone']}
+          {intl.formatMessage({ id: 'phone'})}
         </Grid>
-        <Grid item container alignItems="center">
+
+        <Grid item container>
           <DropdownSelect
             onChange={(value) => updateFormAction(dispatch, 'phonePrefix', value)}
-            items={[1, 2, 3, 4, 5, 6, 7]}
+            items={countryCodes}
             value={getFormValue(state, 'phonePrefix')}
           />
-          {getTextInput('phoneNumber', 'Number')}
+          <Grid item>
+            {getPhoneNumberInput('phoneNumber')}
+          </Grid>
         </Grid>
       </Grid>
+
       <Grid item>
         {getTextInput('email')}
       </Grid>
@@ -79,9 +100,14 @@ const CertificateForm = ({ classes, translations }) => {
 
   const postalCodeAndCityInput = (
     <Grid container direction="row" className={classes.formItem}>
-      {getTextInput('postCode')}
-      {getTextInput('city')}
+      <Grid item xs={3}>
+        {getTextInput('postCode')}
+      </Grid>
+      <Grid item xs={9}>
+        {getTextInput('city')}
+      </Grid>
     </Grid>
+
   );
 
   const addressInput = (
@@ -92,7 +118,7 @@ const CertificateForm = ({ classes, translations }) => {
 
   const disclaimer = (
     <Grid className={classes.formItem}>
-      {translations.disclaimer}
+      {intl.formatMessage({ id: 'disclaimer'})}
     </Grid>
   );
 
@@ -105,7 +131,7 @@ const CertificateForm = ({ classes, translations }) => {
         onClick={() => onSubmit(getPostData(state))}
         fullWidth
       >
-        {translations.continue}
+        {intl.formatMessage({ id: 'continue'})}
       </Button>
     </Grid>
   );

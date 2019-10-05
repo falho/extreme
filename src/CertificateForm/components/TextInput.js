@@ -6,22 +6,30 @@ import TextField from '@material-ui/core/TextField';
 
 const styles = {
   input: {
-    height: 40,
-    width: '100%'
+    height: 40
   },
   main: {
-    marginRight: '10px'
+    marginRight: '10px',
   },
   title: {
-    marginBottom: '5px'
+    marginBottom: '5px',
+    marginTop: '5px'
   }
 };
 
-const TextInputCmp = ({ label, value, type, onChange, classes }) => {
+const TextInputCmp = ({
+  label,
+  value,
+  type,
+  onChange,
+  classes,
+  isValid = true
+}) => {
   return (
     <Grid item className={classes.main}>
       { label && <Grid className={classes.title}>{label}</Grid> }
       <TextField
+        error={!isValid}
         variant="outlined"
         InputProps={{
           className: classes.input

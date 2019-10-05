@@ -1,0 +1,14 @@
+{
+  "translations": {
+    "name": "Telepítést igénylő neve",
+    "phone": "Telepítést igénylő telefonszáma",
+    "email": "Telepítést igénylő email címe",
+    "postCode": "Irányítószám",
+    "city": "Város",
+    "address": "Telepítés helye (utca, házszám, emelet, ajtó)",
+    "disclaimer": "ENSZ Klímaegyezménye...",
+    "continue": "Tovább",
+    "title": "Klíma tanusítvány"
+  },
+  "countryCodes": [36, 31, 672]
+}

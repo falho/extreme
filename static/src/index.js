@@ -1,14 +1,16 @@
 import React from 'react';
+import { IntlProvider } from "react-intl";
 import { render } from 'react-dom';
-import MyComponent from '../../src';
+import ReactComponent from '../../src';
+import config from './config.json';
 
-const App = ({ translations }) => (
-    <MyComponent translations={JSON.parse(translations)}/>
+const App = () => (
+    <IntlProvider locale="hu" messages={config.translations}>
+      <ReactComponent config={config}/>
+    </IntlProvider>
 );
 
-const element = document.getElementById("root");
-
 render(
-  <App translations={element.getAttribute('translations')} />,
-  element
+  <App />,
+  document.getElementById("root")
 );

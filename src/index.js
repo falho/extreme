@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import CertificateFormCmp from './CertificateForm/CertificateForm';
 
-const CertificateForm = ({ translations }) => (
-  <CertificateFormCmp translations={translations} />
+const CertificateForm = ({ config }) => (
+  <CertificateFormCmp countryCodes={config.countryCodes} />
 );
 
 export default CertificateForm;
