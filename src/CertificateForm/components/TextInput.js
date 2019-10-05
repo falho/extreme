@@ -23,7 +23,7 @@ const TextInputCmp = ({
   type,
   onChange,
   classes,
-  isValid = true
+  isValid
 }) => {
   return (
     <Grid item className={classes.main}>
