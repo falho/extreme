@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { IntlProvider } from "react-intl";
 import ReactComponent from '../../src';
-import config from './config.json';
+import config from './config/config.json';
 
 const App = () => (
     <IntlProvider locale="hu" messages={config.translations}>
