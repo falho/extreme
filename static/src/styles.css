@@ -22,6 +22,12 @@ body {
   justify-content: space-between;
 }
 
+@media (max-width: 600px) {
+  .main .header {
+    flex-direction: column;
+  }
+}
+
 .header .logo {
   width: 100px;
   height: 56px;
@@ -75,7 +81,7 @@ body {
   margin-top: 20px;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .main .content {
     flex-direction: column-reverse;
     justify-content: center;

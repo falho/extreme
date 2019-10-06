@@ -26,6 +26,9 @@ const styles = {
   formItemLabel: {
     marginBottom: '5px',
     marginTop: '5px'
+  },
+  grow: {
+    flexGrow: 1
   }
 };
 
@@ -65,18 +68,21 @@ const CertificateForm = ({ classes, countryCodes }) => {
   );
 
   const phoneNumber = (
-    <Grid item>
-      <Grid item className={classes.formItemLabel}>
+    <Grid>
+      <Grid className={classes.formItemLabel}>
         {intl.formatMessage({ id: 'phone'})}
       </Grid>
 
-      <Grid item container>
-        <DropdownSelect
-          onChange={(value) => updateFormAction(dispatch, 'phonePrefix', value)}
-          items={countryCodes}
-          value={getFormValue(state, 'phonePrefix')}
-        />
+      <Grid container>
         <Grid item>
+          <DropdownSelect
+            onChange={(value) => updateFormAction(dispatch, 'phonePrefix', value)}
+            items={countryCodes}
+            value={getFormValue(state, 'phonePrefix')}
+          />
+        </Grid>
+
+        <Grid item className={classes.grow}>
           {getPhoneNumberInput('phoneNumber')}
         </Grid>
       </Grid>
@@ -85,9 +91,11 @@ const CertificateForm = ({ classes, countryCodes }) => {
 
   const phoneAndEmailInput = (
     <Grid container className={classes.formItem}>
-      {phoneNumber}
+      <Grid item xs={12} sm={7}>
+        {phoneNumber}
+      </Grid>
 
-      <Grid item>
+      <Grid item xs={12} sm={5}>
         {getTextInput('email')}
       </Grid>
     </Grid>
