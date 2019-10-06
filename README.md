@@ -1,6 +1,6 @@
 ## Dependencies
 
-#### `npm 6.10.0`
+Run `npm install` to set up all dependencies (use `npm 6.10.0`)
 
 ## Available scripts
 
