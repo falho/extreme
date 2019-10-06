@@ -27,7 +27,8 @@ const styles = {
     marginTop: '5px'
   },
   grow: {
-    flexGrow: 1
+    flexGrow: 1,
+    width: '200px'
   },
   button: {
     marginRight: '10px'
