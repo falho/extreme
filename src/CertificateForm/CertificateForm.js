@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import axios from 'axios';
 import { useIntl } from 'react-intl';
@@ -29,6 +28,9 @@ const styles = {
   },
   grow: {
     flexGrow: 1
+  },
+  button: {
+    marginRight: '10px'
   }
 };
 
@@ -68,7 +70,7 @@ const CertificateForm = ({ classes, countryCodes }) => {
   );
 
   const phoneNumber = (
-    <Grid>
+    <React.Fragment>
       <Grid className={classes.formItemLabel}>
         {intl.formatMessage({ id: 'phone'})}
       </Grid>
@@ -86,7 +88,7 @@ const CertificateForm = ({ classes, countryCodes }) => {
           {getPhoneNumberInput('phoneNumber')}
         </Grid>
       </Grid>
-    </Grid>
+    </React.Fragment>
   );
 
   const phoneAndEmailInput = (
@@ -126,7 +128,7 @@ const CertificateForm = ({ classes, countryCodes }) => {
   );
 
   const submitButton = (
-    <Grid className={classes.formItem}>
+    <Grid className={`${classes.formItem} ${classes.button}`}>
       <Button
         color="primary"
         variant="contained"
@@ -141,13 +143,13 @@ const CertificateForm = ({ classes, countryCodes }) => {
 
   return (
     <Grid>
-        {formTitle}
-        {nameInput}
-        {phoneAndEmailInput}
-        {postalCodeAndCityInput}
-        {addressInput}
-        {disclaimer}
-        {submitButton}
+      {formTitle}
+      {nameInput}
+      {phoneAndEmailInput}
+      {postalCodeAndCityInput}
+      {addressInput}
+      {disclaimer}
+      {submitButton}
     </Grid>);
 }
 

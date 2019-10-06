@@ -1,6 +1,6 @@
 import React from 'react';
-import { IntlProvider } from "react-intl";
 import { render } from 'react-dom';
+import { IntlProvider } from "react-intl";
 import ReactComponent from '../../src';
 import config from './config.json';
 
